@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Image Slider Practise</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+ body{
+    background-color: #191919;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+ .gallery-box{
+    display: flex;
+    gap: 3rem;
+ }
+
+ .gallery{
+    width: 900px;
+    display: flex;
+    overflow-x: scroll;
+
+ }
+
+ /* making a container to horizontal move  */
+ .gallery div{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 1rem;
+    padding: 10px;
+
+    flex: none;   
+ }
+
+ .gallery div img{
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100);
+    
+ }
+
+  .gallery div img:hover{
+    filter:grayscale(0);
+    transform: scale(1.1);
+    transition: all 0.2s linear;
+  }
+
+ /* This is the important webkit to remove a scrollbar form website:  */
+ .gallery::-webkit-scrollbar{
+    display: none;
+ }
+
+        i{
+            font-size: 30px;
+            border: 1px solid black;
+             padding: 1px;
+             cursor: pointer;
+             height: 40px;
+            background-color: #000;
+            color: #fff;
+        }
+        i:active{
+            background-color: #dadada;
+            color: #000;
+        }
+
+    
+
+    </style>
+</head>
+<body>
+    <div class="gallery-box">
+        <i class="fa-solid fa-angle-left" id="left-btn"></i>
+        <div class="gallery">
+            <div>
+                <span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK_0cZCGSduVrXrEc5sZDsI4udbS20YS8KPg&s" alt=""></span>
+                
+                <span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStRVkeDs092g89bs5Ur35Ep_heER362cij8Q&s" alt=""></span>
+                
+              <span><img src="https://static.ffx.io/images/$zoom_1%2C$multiply_0.3441%2C$ratio_1.777778%2C$width_1697%2C$x_0%2C$y_99/t_crop_custom/q_86%2Cf_auto/f0b4332ac2901c11f13ba393fb56e6f05ccb9e50" alt=""></span>
+            </div>
+            <div >
+                <span><img src="https://assets.gqindia.com/photos/67dd59ec5884888359fe2207/16:9/w_2560%2Cc_limit/Finland.jpg" alt=""></span>
+
+                <span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2kEOLtz37_zg5WmGX9mCvu-kg1Ccoh74edQ&s" alt=""></span>
+
+                <span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0dCb1FFTIRfhBF51d4lccQLM1xSf-6ps7YxjNdJoTCA&s" alt=""></span>
+            </div>
+             <div>
+                <span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK_0cZCGSduVrXrEc5sZDsI4udbS20YS8KPg&s" alt=""></span>
+                
+                <span><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStRVkeDs092g89bs5Ur35Ep_heER362cij8Q&s" alt=""></span>
+                
+              <span><img src="https://static.ffx.io/images/$zoom_1%2C$multiply_0.3441%2C$ratio_1.777778%2C$width_1697%2C$x_0%2C$y_99/t_crop_custom/q_86%2Cf_auto/f0b4332ac2901c11f13ba393fb56e6f05ccb9e50" alt=""></span>
+            </div>
+        </div>
+        <i class="fa-solid fa-angle-right" id="right-btn"></i>
+    </div>
+
+    <script>
+let scrollContainer = document.querySelector('.gallery');
+let leftBtn = document.getElementById('left-btn');
+let rightBtn = document.getElementById('right-btn');
+
+//FIRST I WANT TO SLIDE THE IMAGE USING MOUSE WHEEL: 
+scrollContainer.addEventListener('wheel', (event)=>
+{
+    event.preventDefault();   //IT PREVENTS SCROLLING FORM TOP TO BOTTOM
+    scrollContainer.scrollLeft += event.deltaY;
+    scrollContainer.style.scrollBehaviour = "auto"
+})
+
+leftBtn.addEventListener('click', ()=>{    
+    scrollContainer.style.scrollBehaviour = "smooth"
+    scrollContainer.scrollLeft += 900;  //AS 900PX I HAD GIVEN TO A GALLERY CONTAINER, TO MOVE TOWARDS NEXT SLIDE. 
+})
+
+rightBtn.addEventListener('click', ()=>{
+     scrollContainer.style.scrollBehaviour = "smooth"
+     scrollContainer.scrollLeft -=900;//AS 900PX I HAD GIVEN TO A GALLERY CONTAINER, TO MOVE TOWARDS PREV SLIDE. 
+})
+    </script>
+</body>
+</html>
